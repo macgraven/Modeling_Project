@@ -15,6 +15,7 @@ from plotnine import *
 def Ros_Mac_Sim(y,t0,b,a,w,d,e,s):
     H = y[0]
     P = y[1]
+    #H = prey (herbivore), P = predator
 
     dH_dt = b * H * (1 - a * H) - w * (H / (d + H)) * P
     
@@ -27,7 +28,11 @@ def Ros_Mac_Sim(y,t0,b,a,w,d,e,s):
 params = (0.8,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s)
 times = range(0,100)
 #b = prey birth rate 
-#a = predator attack rate 
+#a = alpha = intra-specfici competition coefficient = carrying capacity 
+#w = maximum predator attack rate 
+#d = handling time of predator per prey = how much time predator spends on single prey (catch, digest, etc.)
+#e = conversion efficiency of prey to predators 
+#s = predator death rate 
 
 #Simulate using odeint
 y0 = [500,120] #Passed as H and P, respectively
@@ -35,7 +40,7 @@ sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 
 #Creating a DataFrame
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="red")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="red",size=1.5)+theme_classic()
 print(a)
 
 
@@ -46,7 +51,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line() + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="green")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5) + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="green",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 3: halve b (prey birth rate)
@@ -55,7 +60,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line() + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="green")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5) + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="green",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 4: triple a (predator attack rate)
@@ -64,7 +69,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line() + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5) + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 5: halve a (predator attack rate)
@@ -73,7 +78,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line() + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5) + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 6: double w
@@ -82,7 +87,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line() + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="pink")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5) + ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="pink",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 7: halve w
@@ -91,7 +96,7 @@ times = range(0,100)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="pink")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="pink",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 8: triple d
@@ -100,7 +105,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="orange")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="orange",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 9: halve d
@@ -109,7 +114,7 @@ times = range(0,100)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="orange")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black")+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="orange",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 10: double e
@@ -118,7 +123,7 @@ times = range(0,100)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="purple")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="purple",size=1.5)+theme_classic()
 print(a)
 
 
@@ -128,7 +133,7 @@ times = range(0,100)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="purple")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="purple",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 12: triple s
@@ -137,7 +142,7 @@ times=range(0,100)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="magenta")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="magenta",size=1.5)+theme_classic()
 print(a)
 
 #Simulation 13: halve s 
@@ -146,5 +151,8 @@ times=range(0,100)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="magenta")+theme_classic()
+a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="magenta",size=1.5)+theme_classic()
 print(a)
+
+
+#Paradox of Enrichment 
