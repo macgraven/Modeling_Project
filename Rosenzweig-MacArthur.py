@@ -10,6 +10,7 @@ import pandas
 import scipy
 import scipy.integrate as spint
 from plotnine import *
+import numpy as np 
 
 #Custom function for Ros_Mac
 def Ros_Mac_Sim(y,t0,b,a,w,d,e,s):
@@ -26,7 +27,7 @@ def Ros_Mac_Sim(y,t0,b,a,w,d,e,s):
 #Simulation 1: standard parameters 
 #Define parameters
 params = (0.8,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 #b = prey birth rate 
 #a = alpha = intra-specfici competition coefficient = carrying capacity 
 #w = maximum predator attack rate 
@@ -47,7 +48,7 @@ print(a)
 #Simulation 2: double b (prey birth rate) 
 #See Simulation 1 for descritions of variables, etc. 
 params = (1.6,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -56,7 +57,7 @@ print(a)
 
 #Simulation 3: halve b (prey birth rate)
 params = (0.4,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -65,7 +66,7 @@ print(a)
 
 #Simulation 4: triple a (predator attack rate)
 params = (0.8,0.002,5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -74,7 +75,7 @@ print(a)
 
 #Simulation 5: halve a (predator attack rate)
 params = (0.8,0.0005,5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -83,7 +84,7 @@ print(a)
 
 #Simulation 6: double w
 params = (0.8,0.001,10,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -92,16 +93,16 @@ print(a)
 
 #Simulation 7: halve w
 params = (0.8,0.001,2.5,400,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
 a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="pink",size=1.5)+theme_classic()
 print(a)
 
-#Simulation 8: triple d
+#Simulation 8: double d
 params = (0.8,0.001,10,800,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -110,7 +111,7 @@ print(a)
 
 #Simulation 9: halve d
 params = (0.8,0.001,10,200,0.07,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0=[500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -119,7 +120,7 @@ print(a)
 
 #Simulation 10: double e
 params = (0.8,0.001,10,400,0.14,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -129,7 +130,7 @@ print(a)
 
 #Simulation 11: halve e
 params = (0.8,0.001,10,400,0.035,0.2) #(b,a,w,d,e,s)
-times = range(0,100)
+times = np.arrage(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -138,7 +139,7 @@ print(a)
 
 #Simulation 12: triple s
 params = (0.8,0.001,5,400,0.07,0.6) #(b,a,w,d,e,s)
-times=range(0,100)
+times = np.arrage(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -147,7 +148,7 @@ print(a)
 
 #Simulation 13: halve s 
 params = (0.8,0.001,5,400,0.07,0.1) #(b,a,w,d,e,s)\
-times=range(0,100)
+times = np.arrage(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
@@ -156,3 +157,24 @@ print(a)
 
 
 #Paradox of Enrichment 
+#Simulation 14:
+times = np.arrange(0,100,0.1)
+y0 = [500,120]
+sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
+simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
+
+#Simulation 15: 
+times = np.arrange(0,100,0.1)
+y0 = [500,120]
+sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
+simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})od
+
+#Simulation 16:
+times = np.arrange(0,100,0.1)
+y0 = [500,120]
+sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
+
+#Simulation 17: 
+times = np.arrange(0,100,0.1)
+y0 = [500,120]
+sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
