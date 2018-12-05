@@ -38,12 +38,14 @@ params = (0.5,0.02,0.1,0.2) #Passed as (b,a,e,s)
 sim = spint.odeint(func=Lot_Vol_Sim,y0=y0,t=times,args=params)
 #Creating a dataframe
 simdf=pd.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
+max_df=(max(simdf.H))
+print(max_df)
 a=ggplot(simdf,aes(x="t",y="H"))+geom_line()+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="red")+theme_classic()
 print(a)
 print("Original Parameters")
 
+
 #Trial 2 - Doubling P
-#Should run without major changes
 times = np.arange(0,100,0.1)
 y0 = [25,10] #Passed as H and P, respectively
 params = (0.5,0.02,0.1,0.2) #Passed as (b,a,e,s)
@@ -54,7 +56,6 @@ print(b)
 print("P Doubled")
 
 #Trial 3 - .5x P
-#Should be observably different
 times = np.arange(0,100,0.1)
 y0=[25,2.5]
 params=(0.5,0.02,0.1,0.2)
