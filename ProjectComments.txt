@@ -1,0 +1,24 @@
+#Comments on Grabowski, Bonstetter, Cunniff project by Kerns & Graven
+
+#Comments
+#Box Model: Provide a legend of some kind to demonstrate what variables represent more clearly
+
+#Lotka-Volterra Additional Questions
+#Formatting could be more professional - heading and subsections rather than numbered and lettered points
+#Models are well-made and clear
+#Utilizing a table is a nice touch
+
+#Lotka-Volterra.py
+#Code looks great, and plots are identical to ours. We're either on the right track, or both wrong.
+
+#Paradox of Enrichment
+#Variable labels are clear and well-organized
+
+#Project Plan
+#Project doesn't have any cool people working on it
+
+#Rosenzweig-MacArthur.py
+#Too many pound signs in Rosenzweig-MacArthur plot. Hashtags aren't cool.
+
+#Additional Comments:
+#Well put-together project with reasonable conclusions and clear explanations. Well done!
