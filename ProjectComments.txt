@@ -20,5 +20,8 @@
 #Rosenzweig-MacArthur.py
 #Too many pound signs in Rosenzweig-MacArthur plot. Hashtags aren't cool.
 
+#Rosenzweig-MacArthur Report
+#Looks like there were a couple of points at which you meant to add something, but did not add yet. A few "blanks" are left empty at the moment.
+
 #Additional Comments:
 #Well put-together project with reasonable conclusions and clear explanations. Well done!
