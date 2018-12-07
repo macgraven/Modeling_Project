@@ -29,7 +29,7 @@ def Ros_Mac_Sim(y,t0,b,a,w,d,e,s):
 params = (0.8,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s)
 times = numpy.arange(0,100,0.1)
 #b = prey birth rate 
-#a = alpha = intra-specfic competition coefficient = carrying capacity 
+#a = alpha = intra-specfic competition coefficient = carrying capacity inverse
 #w = maximum predator attack rate 
 #d = handling time of predator per prey = how much time predator spends on single prey (catch, digest, etc.)
 #e = conversion efficiency of prey to predators 
