@@ -149,35 +149,37 @@ print(a)
 
 #Paradox of Enrichment 
 #Simulation 14:
-params = (0.8,0.00125,5,400,0.07,0.1) #(b,a,w,d,e,s)
+params = (0.8,0.00125,5,400,0.07,0.2) #(b,a,w,d,e,s) | Carrying Capacity of 800
 times = numpy.arange(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
-print(a)
+a1 = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
+print(a1)
 
 #Simulation 15: 
-params = (0.8,0.001,5,400,0.07,0.1) #(b,a,w,d,e,s)
+params = (0.8,0.001,5,400,0.07,0.2) #(b,a,w,d,e,s) | Carrying Capacity of 1000
 times = numpy.arange(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
 simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
-print(a)
+a2 = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
+print(a2)
 
 #Simulation 16:
-params = (0.8,0.00075,5,400,0.07,0.1) #(b,a,w,d,e,s)
+params = (0.8,0.00067,5,400,0.07,0.2) #(b,a,w,d,e,s) | Carrying Capacity of 1500
 times = numpy.arange(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
-print(a)
+simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
+a3 = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
+print(a3)
 
 #Simulation 17: 
-params = (0.8,0.0005,5,400,0.07,0.1) #(b,a,w,d,e,s)
+params = (0.8,0.0005,5,400,0.07,0.2) #(b,a,w,d,e,s) | Carrying Capacity of 2000
 times = numpy.arange(0,100,0.1)
 y0 = [500,120]
 sim = spint.odeint(func=Ros_Mac_Sim,y0=y0,t=times,args=params)
-a = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
-print(a)
+simdf = pandas.DataFrame({"t":times,"H":sim[:,0],"P":sim[:,1]})
+a4 = ggplot(simdf,aes(x="t",y="H"))+geom_line(color="black",size=1.5)+ylab("Population")+geom_line(simdf,aes(x="t",y="P"),color="blue",size=1.5)+theme_classic()
+print(a4)
